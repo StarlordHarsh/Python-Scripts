@@ -15,4 +15,12 @@ print "Listening"
 
 connection,address=tcp_socket.accept()
 print "Connect with-", address
-
+data = connection.recv((buff))
+print "Message-"+data
+#connection.sendall("Thanks, Regards")
+#connection.close()
+while True:
+    connection, address = tcp_socket.accept()
+    print "Client Connected-",address
+    data = connection.recv(buff)
+    print "Message-"+data

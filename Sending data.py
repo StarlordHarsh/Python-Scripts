@@ -4,7 +4,7 @@ import sys
 TCP_IP="127.0.0.1"
 TCP_PORT=8090
 BUFFER_SIZE=1024
-MESSAGE_TO_SERVER="Hello world"
+MESSAGE_TO_SERVER=raw_input("Enter the message-")
 
 try:
     tcp_socket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,3 +20,6 @@ except socket.error, e:
     print"Error"+e
     sys.exit()
 print "Message send"
+
+
+
