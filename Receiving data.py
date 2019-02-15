@@ -1,4 +1,6 @@
 import socket
+import sys
+from thread import *
 
 tcpip="127.0.0.1"
 tcpport=8090
@@ -13,14 +15,23 @@ tcp_socket.bind((tcpip,tcpport))
 tcp_socket.listen(2)
 print "Listening"
 
-connection,address=tcp_socket.accept()
-print "Connect with-", address
-data = connection.recv((buff))
-print "Message-"+data
-#connection.sendall("Thanks, Regards")
-#connection.close()
+def ClienConnectionHandler(connection):
+    BUFFER=1024
+    connection.send("Welcoe to the server")
+
+    while True:
+        data = connection.recv(BUFFER)
+        reply = "Data received:"+data
+        if not data:
+            break
+        print("Message-" + data)
+        connection.sendall(reply)
+
+    connection.close()
+
 while True:
     connection, address = tcp_socket.accept()
-    print "Client Connected-",address
-    data = connection.recv(buff)
-    print "Message-"+data
+    print ("Client connected:",address)
+    start_new_thread(ClienConnectionHandler, (connection,))
+
+tcp_socket.close()

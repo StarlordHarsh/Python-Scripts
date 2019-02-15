@@ -21,5 +21,9 @@ except socket.error, e:
     sys.exit()
 print "Message send"
 
+data = tcp_socket.recv(BUFFER_SIZE)
+tcp_socket.close()
+print "Response from server",data
+
 
 
