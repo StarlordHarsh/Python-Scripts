@@ -17,7 +17,7 @@ print "Listening"
 
 def ClienConnectionHandler(connection):
     BUFFER=1024
-    connection.send("Welcoe to the server")
+    connection.send("Welcome to the server")
 
     while True:
         data = connection.recv(BUFFER)
