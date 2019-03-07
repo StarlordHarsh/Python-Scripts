@@ -24,8 +24,11 @@ def ClienConnectionHandler(connection):
         reply = "Data received:"+data
         if not data:
             break
-        print("Message-" + data)
-        connection.sendall(reply)
+        try:
+            print("Message-" + data)
+            connection.sendall(reply)
+        except socket.gaierror,g:
+            print(g)
 
     connection.close()
 
